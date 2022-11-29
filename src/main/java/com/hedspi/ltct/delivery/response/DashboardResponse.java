@@ -1,32 +1,29 @@
 package com.hedspi.ltct.delivery.response;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class DashboardResponse {
-    private List<DailyOrders> dailyOrdersList = new ArrayList<DailyOrders>();
-    private List<Map<Integer,Long>> numOfOrderStatuses = new ArrayList<Map<Integer, Long>>();
+    private List<DailyOrders> orderQuantityPerDay = new ArrayList<DailyOrders>();
+    private Map<Integer,Long> orderQuantityByStatus = new HashMap<Integer,Long>();
 
-    public DashboardResponse(List<DailyOrders> dailyOrdersList, List<Map<Integer, Long>> numOfOrderStatuses) {
-        this.dailyOrdersList = dailyOrdersList;
-        this.numOfOrderStatuses = numOfOrderStatuses;
+    public DashboardResponse(List<DailyOrders> orderQuantityPerDay, Map<Integer, Long> orderQuantityByStatus) {
+        this.orderQuantityPerDay = orderQuantityPerDay;
+        this.orderQuantityByStatus = orderQuantityByStatus;
     }
 
-    public List<DailyOrders> getDailyOrdersList() {
-        return dailyOrdersList;
+    public List<DailyOrders> getOrderQuantityPerDay() {
+        return orderQuantityPerDay;
     }
 
-    public void setDailyOrdersList(List<DailyOrders> dailyOrdersList) {
-        this.dailyOrdersList = dailyOrdersList;
+    public void setOrderQuantityPerDay(List<DailyOrders> orderQuantityPerDay) {
+        this.orderQuantityPerDay = orderQuantityPerDay;
     }
 
-    public List<Map<Integer, Long>> getNumOfOrderStatuses() {
-        return numOfOrderStatuses;
+    public Map<Integer, Long> getOrderQuantityByStatus() {
+        return orderQuantityByStatus;
     }
 
-    public void setNumOfOrderStatuses(List<Map<Integer, Long>> numOfOrderStatuses) {
-        this.numOfOrderStatuses = numOfOrderStatuses;
+    public void setOrderQuantityByStatus(Map<Integer, Long> orderQuantityByStatus) {
+        this.orderQuantityByStatus = orderQuantityByStatus;
     }
 }

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -17,7 +18,7 @@ public class DashboardService {
     @Autowired
     ShippingOrderRepository shippingOrderRepository;
 
-    public CommonResponse getDailyOrders() {
+    public CommonResponse getDashboard() {
         CommonResponse commonResponse = new CommonResponse();
 
         try {
@@ -28,18 +29,13 @@ public class DashboardService {
                 long count = shippingOrderRepository.numOfDailyOrders(tempDate);
                 dailyOrdersList.add(new DailyOrders(count,tempDate));
             }
-
-            List<Map<Integer,Long>> numOfOrderStatuses = new ArrayList<Map<Integer,Long>>();
-
+            Map<Integer,Long> numOfOrderStatuses = new HashMap<Integer,Long>();
+            long count;
             for(int i = 1;i<=4;i++){
-                long count = shippingOrderRepository.numOfOrderByStatus(i);
-
-
+                count = shippingOrderRepository.numOfOrderByStatus(i);
+                numOfOrderStatuses.put(i,count);
             }
-            DashboardResponse dashboardResponse = new DashboardResponse(dailyOrdersList,);
-
-
-
+            DashboardResponse dashboardResponse = new DashboardResponse(dailyOrdersList,numOfOrderStatuses);
             if (dailyOrdersList == null)
                 return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
 

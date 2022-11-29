@@ -17,9 +17,9 @@ import java.util.List;
 public class DashboardController {
     @Autowired
     DashboardService dashboardService;
-    @GetMapping (value = "/dashboardDaily")
-    public CommonResponse getDailyOrder(){
-        return dashboardService.getDailyOrders();
+    @GetMapping (value = "/dashboard")
+    public CommonResponse getDashboard(){
+        return dashboardService.getDashboard();
     }
 
 
