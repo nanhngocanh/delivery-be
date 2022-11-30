@@ -15,7 +15,7 @@ public class ShippingOrder {
     @Column(name = "order_code", length = 50)
     private String orderCode;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "status_code")
     private Status statusCode;
 
@@ -70,6 +70,13 @@ public class ShippingOrder {
     public ShippingOrder(String orderCode,Status status, String statusDetail, Instant createAt, Instant updateAt) {
         this.orderCode = orderCode;
         this.statusCode = status;
+        this.statusDetail = statusDetail;
+        this.createAt = createAt;
+        this.updateAt = updateAt;
+    }
+
+    public ShippingOrder(String orderCode, String statusDetail, Instant createAt, Instant updateAt) {
+        this.orderCode = orderCode;
         this.statusDetail = statusDetail;
         this.createAt = createAt;
         this.updateAt = updateAt;
