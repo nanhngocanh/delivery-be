@@ -10,6 +10,9 @@ public class Status {
     @Column(name = "status_code", nullable = false)
     private Integer id;
 
+    public Status() {
+    }
+
     @Column(name = "`desc`")
     private String desc;
 
@@ -21,4 +24,8 @@ public class Status {
         return id;
     }
 
+    public Status(Integer id, String desc) {
+        this.id = id;
+        this.desc = desc;
+    }
 }

@@ -24,6 +24,12 @@ public class Result {
         return this;
     }
 
+    public Result(String responseCode, String message, boolean ok) {
+        this.responseCode = responseCode;
+        this.message = message;
+        this.ok = ok;
+    }
+
     public String getResponseCode() {
         return responseCode;
     }

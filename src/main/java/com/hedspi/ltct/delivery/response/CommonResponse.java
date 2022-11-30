@@ -46,6 +46,7 @@ public class CommonResponse<T> {
         return this;
     }
 
+
     public Result getResult() {
         return result;
     }
@@ -62,5 +63,9 @@ public class CommonResponse<T> {
         this.data = data;
     }
 
+    public CommonResponse(Result result, T data) {
+        this.result = result;
+        this.data = data;
+    }
 }
 
