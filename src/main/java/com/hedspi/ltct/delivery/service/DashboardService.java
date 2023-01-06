@@ -20,7 +20,6 @@ public class DashboardService {
 
     public CommonResponse getDashboard() {
         CommonResponse commonResponse = new CommonResponse();
-
         try {
             List<DailyOrders> dailyOrdersList =new ArrayList<DailyOrders>();
             LocalDate curDate = LocalDate.now();
@@ -45,6 +44,18 @@ public class DashboardService {
             return commonResponse.result("500","Có lỗi server!",false);
         }
     }
+    public CommonResponse getNumOfShippingOrderByStatus(Integer statusCode){
+        CommonResponse commonResponse = new CommonResponse();
+        try {
+            Long count = shippingOrderRepository.numOfOrderByStatus(statusCode);
+            if (count == null)
+                return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
 
+            return commonResponse.data(count).result("200","Thành công!",true);
+        } catch (Exception e) {
+
+            return commonResponse.result("500","Có lỗi server!",false);
+        }
+    }
 
 }

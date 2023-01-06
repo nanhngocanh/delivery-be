@@ -1,6 +1,6 @@
 package com.hedspi.ltct.delivery.repository;
 
-import com.hedspi.ltct.delivery.model.Status;
+import com.hedspi.ltct.delivery.entity.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

@@ -1,4 +1,4 @@
-package com.hedspi.ltct.delivery.model;
+package com.hedspi.ltct.delivery.entity;
 
 import jakarta.persistence.*;
 
