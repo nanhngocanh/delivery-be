@@ -14,10 +14,9 @@ services:
       - network
   delivery:
     container_name: delivery
-    image: delivery:latest
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: maven:latest
+    working_dir: /app
+    entrypoint: mvn spring-boot:run -Dmaven.repo.local=repository -DskipTests
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://dbltct:3306/delivery
     ports:
