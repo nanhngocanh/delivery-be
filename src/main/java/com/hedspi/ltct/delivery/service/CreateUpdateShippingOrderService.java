@@ -84,4 +84,41 @@ public class CreateUpdateShippingOrderService {
             return commonResponse.result("500","Có lỗi server!",false);
         }
     }
+
+    public CommonResponse redeliver(String orderCode, CreateShippingOrderRequest createShippingOrderRequest){
+        CommonResponse commonResponse = new CommonResponse<>();
+        try {
+            Integer updateOk = shippingOrderRepository.updateStatus(orderCode, 5, null);
+            if (updateOk.equals(0))
+                return commonResponse.result("400","Yêu cầu không hợp lệ! Mã đơn hàng không tồn tại",false);
+            List<ShippingProduct> oldShippingProduct = shippingProductRepository.findByShippingOrder(orderCode);
+            if (oldShippingProduct == null)
+                return commonResponse.result("400","Yêu cầu không hợp lệ! Mã đơn hàng không tồn tại",false);
+            for (ShippingProduct shippingProduct : oldShippingProduct) {
+                shippingProduct.setStatus(0);
+            }
+            List<ShippingProduct> updatedOldShippingProduct = shippingProductRepository.saveAll(oldShippingProduct);
+            if (updatedOldShippingProduct == null)
+                return commonResponse.result("400","Yêu cầu không hợp lệ! Không thể cập nhật sản phẩm trong đơn hàng",false);
+            List<ShippingProduct> newShippingProduct = new ArrayList<>();
+            for (Product product : createShippingOrderRequest.getProducts()) {
+                newShippingProduct.add(new ShippingProduct(
+                        shippingOrderRepository.findByOrderCode(orderCode).get(),
+                        product.getId(),
+                        product.getQuantity(),
+                        product.getName(),
+                        product.getColor(),
+                        product.getSize(),
+                        product.getPrice())
+                );
+            }
+            List<ShippingProduct> insertedNewShippingProduct = shippingProductRepository.saveAll(newShippingProduct);
+            if (insertedNewShippingProduct == null)
+                return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
+            return commonResponse.result("200","Thành công!",true);
+        } catch (Exception e) {
+            System.out.println(e);
+            return commonResponse.result("500","Có lỗi server!",false);
+        }
+    }
 }

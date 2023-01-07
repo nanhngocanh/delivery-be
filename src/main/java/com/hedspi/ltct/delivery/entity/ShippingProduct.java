@@ -116,4 +116,7 @@ public class ShippingProduct {
         this.size = size;
         this.price = price;
     }
+
+    public ShippingProduct() {
+    }
 }

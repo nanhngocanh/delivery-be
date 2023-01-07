@@ -13,7 +13,11 @@ public class CreateUpdateShippingOrderController {
     private CreateUpdateShippingOrderService createUpdateShippingOrderService;
 
     @PostMapping("/shipping_order")
-    public CommonResponse updateShipping(@RequestBody CreateShippingOrderRequest createShippingOrderRequest){
+    public CommonResponse createShipping(@RequestBody CreateShippingOrderRequest createShippingOrderRequest){
         return createUpdateShippingOrderService.createShippingOrder(createShippingOrderRequest);
+    }
+    @PutMapping("/shipping_order/redeliver/{orderCode}")
+    public CommonResponse redeliver(@PathVariable("orderCode")String orderCode, @RequestBody CreateShippingOrderRequest createShippingOrderRequest){
+        return createUpdateShippingOrderService.redeliver(orderCode, createShippingOrderRequest);
     }
 }

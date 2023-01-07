@@ -22,8 +22,7 @@ public class CreateShippingOrderRequest {
         this.products = products;
     }
 
-    public CreateShippingOrderRequest(String order_id, List<Product> products) {
-        this.orderId = order_id;
+    public CreateShippingOrderRequest(List<Product> products) {
         this.products = products;
     }
 
