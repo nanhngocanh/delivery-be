@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  dbltct:
+    container_name: dbltct
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - local:/var/lib/mysql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+    environment:
+      MYSQL_DATABASE: delivery
+      MYSQL_ROOT_PASSWORD: 732001
+    networks:
+      - network
+  delivery:
+    container_name: delivery
+    image: delivery:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://dbltct:3306/delivery
+    ports:
+      - "8082:8082"
+    volumes:
+      - .:/app
+    depends_on:
+      - dbltct
+    networks:
+      - network
+networks:
+  network:
+    driver: bridge
+volumes:
+  local:
+    driver: local
