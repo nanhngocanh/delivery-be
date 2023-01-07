@@ -23,4 +23,20 @@ public class ShippingInfoController {
     public CommonResponse getShippingOrderFee(@PathVariable String orderCode){
         return shippingInfoService.getShippingOrderFee(orderCode);
     }
+
+    @GetMapping("/shipping_order")
+    public CommonResponse getAllShippingOrder(){
+        return shippingInfoService.getAll();
+    }
+
+    @GetMapping("/shipping_order/{id}")
+    public CommonResponse getShippingOrderById(@PathVariable("id")Integer id){
+        return shippingInfoService.getById(id);
+    }
+
+    @GetMapping("/shipping_order/product/{orderCode}")
+    public CommonResponse getProductsByOrderCode(@PathVariable String orderCode){
+        System.out.println("1");
+        return shippingInfoService.getProductsByOrderCode(orderCode);
+    }
 }

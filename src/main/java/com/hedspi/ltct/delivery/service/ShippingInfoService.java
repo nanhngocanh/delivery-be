@@ -1,7 +1,9 @@
 package com.hedspi.ltct.delivery.service;
 
 import com.hedspi.ltct.delivery.entity.ShippingOrder;
+import com.hedspi.ltct.delivery.entity.ShippingProduct;
 import com.hedspi.ltct.delivery.repository.ShippingOrderRepository;
+import com.hedspi.ltct.delivery.repository.ShippingProductRepository;
 import com.hedspi.ltct.delivery.response.CommonResponse;
 import com.hedspi.ltct.delivery.response.OrderStatusResponse;
 import com.hedspi.ltct.delivery.response.ShippingFeeResponse;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class ShippingInfoService {
     @Autowired
     ShippingOrderRepository shippingOrderRepository;
+
+    @Autowired
+    ShippingProductRepository shippingProductRepository;
 
     public CommonResponse getAll() {
         CommonResponse commonResponse = new CommonResponse<>();
@@ -81,6 +86,21 @@ public class ShippingInfoService {
             System.out.println(e);
             return commonResponse.result("500", "Có lỗi server!", false);
         }
+    }
+
+    public CommonResponse getProductsByOrderCode(String orderCode){
+        CommonResponse commonResponse = new CommonResponse<>();
+        try {
+            List<ShippingProduct> shippingProductList = shippingProductRepository.getProductForDisplayByShippingOrder(orderCode);
+            if (shippingProductList == null)
+                return commonResponse.result("400", "Yêu cầu không hợp lệ!", false);
+            System.out.println(shippingProductList.size());
+            return commonResponse.data(shippingProductList).result("200", "Thành công!", true);
+        } catch (Exception e) {
+            System.out.println(e);
+            return commonResponse.result("500", "Có lỗi server!", false);
+        }
+
     }
 
 

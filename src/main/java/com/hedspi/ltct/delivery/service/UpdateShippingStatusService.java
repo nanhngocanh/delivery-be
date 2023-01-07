@@ -51,20 +51,6 @@ public class UpdateShippingStatusService {
         }
     }
 
-    public CommonResponse redeliver(String orderCode){
-        CommonResponse commonResponse = new CommonResponse<>();
-        try {
-            Integer updateOk = shippingOrderRepository.updateStatus(orderCode, 5, "Đang lấy lại hàng từ phía khách hàng");
-            if (updateOk.equals(0))
-                return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
-
-            return commonResponse.result("200","Thành công!",true);
-        } catch (Exception e) {
-            System.out.println(e);
-            return commonResponse.result("500","Có lỗi server!",false);
-        }
-    }
-
     public CommonResponse returnOrder(String orderCode){
         CommonResponse commonResponse = new CommonResponse<>();
         try {

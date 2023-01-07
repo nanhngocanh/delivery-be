@@ -1,25 +1,25 @@
 package com.hedspi.ltct.delivery.request.createRequest;
 
 public class Address {
-    private Integer ward;
+    private String ward;
     private Integer district;
     private Integer province;
     private String detail;
 
     public Address(){}
 
-    public Address(Integer ward, Integer district, Integer province, String detail) {
+    public Address(String ward, Integer district, Integer province, String detail) {
         this.ward = ward;
         this.district = district;
         this.province = province;
         this.detail = detail;
     }
 
-    public Integer getWard() {
+    public String getWard() {
         return ward;
     }
 
-    public void setWard(Integer ward) {
+    public void setWard(String ward) {
         this.ward = ward;
     }
 
