@@ -88,7 +88,7 @@ public class CreateUpdateShippingOrderService {
     public CommonResponse redeliver(String orderCode, CreateShippingOrderRequest createShippingOrderRequest){
         CommonResponse commonResponse = new CommonResponse<>();
         try {
-            Integer updateOk = shippingOrderRepository.updateStatus(orderCode, 5, null);
+            Integer updateOk = shippingOrderRepository.updateStatus(orderCode, 5, "Đang lấy lại hàng từ phía khách hàng");
             if (updateOk.equals(0))
                 return commonResponse.result("400","Yêu cầu không hợp lệ! Mã đơn hàng không tồn tại",false);
             List<ShippingProduct> oldShippingProduct = shippingProductRepository.findByShippingOrder(orderCode);

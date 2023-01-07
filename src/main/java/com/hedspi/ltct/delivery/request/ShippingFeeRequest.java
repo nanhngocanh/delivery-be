@@ -3,13 +3,13 @@ package com.hedspi.ltct.delivery.request;
 public class ShippingFeeRequest {
     private Integer from_district_id;
     private Integer to_district_id;
-    private Integer to_ward_code;
+    private String to_ward_code;
     private Integer cod_value;
 
     public ShippingFeeRequest() {
     }
 
-    public ShippingFeeRequest(Integer from_district_id, Integer to_district_id, Integer to_ward_code, Integer cod_value) {
+    public ShippingFeeRequest(Integer from_district_id, Integer to_district_id, String to_ward_code, Integer cod_value) {
         this.from_district_id = from_district_id;
         this.to_district_id = to_district_id;
         this.to_ward_code = to_ward_code;
@@ -32,11 +32,11 @@ public class ShippingFeeRequest {
         this.to_district_id = to_district_id;
     }
 
-    public Integer getTo_ward_code() {
+    public String getTo_ward_code() {
         return to_ward_code;
     }
 
-    public void setTo_ward_code(Integer to_ward_code) {
+    public void setTo_ward_code(String to_ward_code) {
         this.to_ward_code = to_ward_code;
     }
 

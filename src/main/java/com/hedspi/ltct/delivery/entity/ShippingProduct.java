@@ -117,6 +117,17 @@ public class ShippingProduct {
         this.price = price;
     }
 
+    public ShippingProduct(Integer id, String productId, Integer quantity, Integer status, String name, String color, String size, Integer price) {
+        this.id = id;
+        this.productId = productId;
+        this.quantity = quantity;
+        this.status = status;
+        this.name = name;
+        this.color = color;
+        this.size = size;
+        this.price = price;
+    }
+
     public ShippingProduct() {
     }
 }
