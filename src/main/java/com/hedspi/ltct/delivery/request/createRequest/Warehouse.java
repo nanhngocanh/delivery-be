@@ -1,10 +1,10 @@
 package com.hedspi.ltct.delivery.request.createRequest;
 
 public class Warehouse {
-    private Address address;
+    private Address address = new Address("1A0302", 1488, 201, "Kho Đại học Bách Khoa Hà Nội");
 
     public Warehouse(Address address) {
-        this.address = address;
+        this.address.setDetail(address.getDetail());
     }
 
     public Warehouse(){}
@@ -14,6 +14,6 @@ public class Warehouse {
     }
 
     public void setAddress(Address address) {
-        this.address = address;
+        this.address.setDetail(address.getDetail());
     }
 }

@@ -32,7 +32,8 @@ public class CreateUpdateShippingOrderService {
         CommonResponse commonResponse = new CommonResponse<>();
         try {
             ShippingFeeResponse shippingFee = shippingFeeService.getFeeFromGhn(new ShippingFeeRequest(
-                    createShippingOrderRequest.getWarehouse().getAddress().getDistrict(),
+//                    createShippingOrderRequest.getWarehouse().getAddress().getDistrict(),
+                    1488,
                     createShippingOrderRequest.getReceiver().getAddress().getDistrict(),
                     createShippingOrderRequest.getReceiver().getAddress().getWard(),
                     createShippingOrderRequest.getCod()

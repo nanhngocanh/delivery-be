@@ -34,7 +34,7 @@ public class ShippingFeeService {
         HttpEntity<GhnRequest> header = new HttpEntity<>(
                 new GhnRequest(
                         shippingFeeRequest.getFrom_district_id(),
-                        shippingFeeRequest.getFrom_district_id(),
+                        shippingFeeRequest.getTo_district_id(),
                         shippingFeeRequest.getTo_ward_code(),
                         shippingFeeRequest.getCod_value()
                 ), httpHeaders);

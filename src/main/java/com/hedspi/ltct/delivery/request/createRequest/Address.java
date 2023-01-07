@@ -31,12 +31,31 @@ public class Address {
         this.district = district;
     }
 
+    public void setDistrict(String district) {
+        try {
+            this.district = Integer.parseInt(district);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+            this.district = null;
+        }
+    }
+
     public Integer getProvince() {
         return province;
     }
 
     public void setProvince(Integer province) {
         this.province = province;
+    }
+
+    public void setProvince(String province) {
+        try {
+            this.province = Integer.parseInt(province);
+        } catch (Exception e){
+            System.out.println(e);
+            this.province = null;
+        }
     }
 
     public String getDetail() {
