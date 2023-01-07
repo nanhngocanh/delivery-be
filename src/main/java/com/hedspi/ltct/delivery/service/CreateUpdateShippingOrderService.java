@@ -37,6 +37,8 @@ public class CreateUpdateShippingOrderService {
                     createShippingOrderRequest.getReceiver().getAddress().getWard(),
                     createShippingOrderRequest.getCod()
             ));
+            if (shippingFee == null)
+                return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
 
             ShippingOrder shippingOrder = new ShippingOrder(
                     createShippingOrderRequest.getOrderId(),
@@ -75,9 +77,8 @@ public class CreateUpdateShippingOrderService {
             }
 
             List<ShippingProduct> newShippingProduct = shippingProductRepository.saveAll(shippingProductList);
-            if (newShippingProduct == null)
+            if (newShippingProduct == null || newShippingProduct.size() < 1)
                 return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
-
             return commonResponse.result("200","Thành công!",true);
         } catch (Exception e) {
             System.out.println(e);
@@ -92,13 +93,13 @@ public class CreateUpdateShippingOrderService {
             if (updateOk.equals(0))
                 return commonResponse.result("400","Yêu cầu không hợp lệ! Mã đơn hàng không tồn tại",false);
             List<ShippingProduct> oldShippingProduct = shippingProductRepository.findByShippingOrder(orderCode);
-            if (oldShippingProduct == null)
+            if (oldShippingProduct == null || oldShippingProduct.isEmpty())
                 return commonResponse.result("400","Yêu cầu không hợp lệ! Mã đơn hàng không tồn tại",false);
             for (ShippingProduct shippingProduct : oldShippingProduct) {
                 shippingProduct.setStatus(0);
             }
             List<ShippingProduct> updatedOldShippingProduct = shippingProductRepository.saveAll(oldShippingProduct);
-            if (updatedOldShippingProduct == null)
+            if (updatedOldShippingProduct == null || updatedOldShippingProduct.isEmpty())
                 return commonResponse.result("400","Yêu cầu không hợp lệ! Không thể cập nhật sản phẩm trong đơn hàng",false);
             List<ShippingProduct> newShippingProduct = new ArrayList<>();
             for (Product product : createShippingOrderRequest.getProducts()) {
@@ -113,7 +114,7 @@ public class CreateUpdateShippingOrderService {
                 );
             }
             List<ShippingProduct> insertedNewShippingProduct = shippingProductRepository.saveAll(newShippingProduct);
-            if (insertedNewShippingProduct == null)
+            if (insertedNewShippingProduct == null || insertedNewShippingProduct.isEmpty())
                 return commonResponse.result("400","Yêu cầu không hợp lệ!",false);
             return commonResponse.result("200","Thành công!",true);
         } catch (Exception e) {

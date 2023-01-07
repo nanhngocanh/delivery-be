@@ -39,7 +39,7 @@ public class ShippingInfoService {
         CommonResponse commonResponse = new CommonResponse();
         try {
             Optional<ShippingOrder> shippingOrder = shippingOrderRepository.findById(id);
-            if (shippingOrder == null)
+            if (shippingOrder == null || shippingOrder.isEmpty() )
                 return commonResponse.result("400", "Yêu cầu không hợp lệ!", false);
             return commonResponse.data(shippingOrder).result("200", "Thành công!", true);
         } catch (Exception e) {
@@ -52,8 +52,8 @@ public class ShippingInfoService {
         CommonResponse commonResponse = new CommonResponse();
         try {
             Optional<ShippingOrder> shippingOrder = shippingOrderRepository.findByOrderCode(orderCode);
-            if (shippingOrder == null)
-                return commonResponse.result("400", "Yêu cầu không hợp lệ!", false);
+            if (shippingOrder == null || shippingOrder.isEmpty())
+                return commonResponse.result("404", "Không tìm thấy tài nguyên!", false);
 
             return commonResponse.data(
                     new ShippingFeeResponse(
@@ -73,8 +73,8 @@ public class ShippingInfoService {
         CommonResponse commonResponse = new CommonResponse();
         try {
             Optional<ShippingOrder> shippingOrder = shippingOrderRepository.findByOrderCode(orderCode);
-            if (shippingOrder == null)
-                return commonResponse.result("400", "Yêu cầu không hợp lệ!", false);
+            if (shippingOrder == null || shippingOrder.isEmpty())
+                return commonResponse.result("404", "Không tìm thấy tài nguyên!", false);
             return commonResponse.data(
                     new OrderStatusResponse(
                             shippingOrder.get().getStatusCode().getDesc(),
@@ -92,9 +92,8 @@ public class ShippingInfoService {
         CommonResponse commonResponse = new CommonResponse<>();
         try {
             List<ShippingProduct> shippingProductList = shippingProductRepository.getProductForDisplayByShippingOrder(orderCode);
-            if (shippingProductList == null)
-                return commonResponse.result("400", "Yêu cầu không hợp lệ!", false);
-            System.out.println(shippingProductList.size());
+            if (shippingProductList == null || shippingProductList.isEmpty())
+                return commonResponse.result("404", "Không tìm thấy tài nguyên!", false);
             return commonResponse.data(shippingProductList).result("200", "Thành công!", true);
         } catch (Exception e) {
             System.out.println(e);
