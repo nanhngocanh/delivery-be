@@ -2,8 +2,8 @@ package com.hedspi.ltct.delivery.request;
 
 public class GhnRequest {
     private Integer from_district_id;
-    private Integer service_id = 53320;//chuyen phat thuong mai dien tu
-    private String service_type_id = null;
+    private Integer service_id = null;
+    private Integer service_type_id = 2; //chuyen phat thuong mai dien tu
     private Integer to_district_id;
     private String to_ward_code;
     private Integer height = 50;
@@ -14,7 +14,7 @@ public class GhnRequest {
     private String coupon = null;
     private Integer cod_value;
 
-    public GhnRequest(Integer from_district_id, Integer service_id, String service_type_id, Integer to_district_id, String to_ward_code, Integer height, Integer length, Integer weight, Integer width, Integer insurance_value, String coupon, Integer cod_value) {
+    public GhnRequest(Integer from_district_id, Integer service_id, Integer service_type_id, Integer to_district_id, String to_ward_code, Integer height, Integer length, Integer weight, Integer width, Integer insurance_value, String coupon, Integer cod_value) {
         this.from_district_id = from_district_id;
         this.service_id = service_id;
         this.service_type_id = service_type_id;
@@ -52,11 +52,11 @@ public class GhnRequest {
         this.service_id = service_id;
     }
 
-    public String getService_type_id() {
+    public Integer getService_type_id() {
         return service_type_id;
     }
 
-    public void setService_type_id(String service_type_id) {
+    public void setService_type_id(Integer service_type_id) {
         this.service_type_id = service_type_id;
     }
 
