@@ -41,8 +41,8 @@ public class ShippingFeeService {
         ResponseEntity<GhnResponse> response = restTemplate
                 .exchange("https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee", HttpMethod.POST, header, GhnResponse.class);
         return  new ShippingFeeResponse(
-                response.getBody().getData().getTotal(),
-                response.getBody().getData().getService_fee(),
+                response.getBody().getData().getTotal() + (int)Math.floor(shippingFeeRequest.getCod_value()/10.0),
+                response.getBody().getData().getService_fee() + (int)Math.floor(shippingFeeRequest.getCod_value()/10.0),
                 response.getBody().getData().getInsurance_fee(),
                 response.getBody().getData().getPick_station_fee()
         );
