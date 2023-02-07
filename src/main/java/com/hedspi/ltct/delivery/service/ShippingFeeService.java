@@ -38,11 +38,15 @@ public class ShippingFeeService {
                         shippingFeeRequest.getTo_ward_code(),
                         shippingFeeRequest.getCod_value()
                 ), httpHeaders);
+        int codFee = (int)Math.floor(shippingFeeRequest.getCod_value()/10.0);
+        if (codFee > 12000){
+            codFee = 12000;
+        }
         ResponseEntity<GhnResponse> response = restTemplate
                 .exchange("https://online-gateway.ghn.vn/shiip/public-api/v2/shipping-order/fee", HttpMethod.POST, header, GhnResponse.class);
         return  new ShippingFeeResponse(
-                response.getBody().getData().getTotal() + (int)Math.floor(shippingFeeRequest.getCod_value()/10.0),
-                response.getBody().getData().getService_fee() + (int)Math.floor(shippingFeeRequest.getCod_value()/10.0),
+                response.getBody().getData().getTotal() + codFee,
+                response.getBody().getData().getService_fee() + codFee,
                 response.getBody().getData().getInsurance_fee(),
                 response.getBody().getData().getPick_station_fee()
         );
