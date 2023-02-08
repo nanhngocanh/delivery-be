@@ -30,7 +30,7 @@ public class DashboardService {
             }
             Map<Integer,Long> numOfOrderStatuses = new HashMap<Integer,Long>();
             long count;
-            for(int i = 1;i<=4;i++){
+            for(int i = 1;i<=8;i++){
                 count = shippingOrderRepository.numOfOrderByStatus(i);
                 numOfOrderStatuses.put(i,count);
             }
