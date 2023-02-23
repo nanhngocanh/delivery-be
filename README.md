@@ -22,3 +22,32 @@ Alternatively you can use the [Spring Boot Maven plugin](https://docs.spring.io/
 ```shell
 mvn spring-boot:run
 ```
+
+Run in port 8088
+
+Run DB by db.sql file
+
+Change your DBMS port and username/password of your DBMS at src/main/resources/application.properties file.
+
+## Structure
+
+config - class which will config application
+
+controller - controller class
+
+repository - repository interface
+
+service - bussiness logic classes
+
+exception - exception class
+
+response - dto classes will be present
+
+request - request api class
+
+## API Docs
+
+[Gg sheet](https://docs.google.com/spreadsheets/d/1Z9Z5VmUcC39Azya5PNlgdXaokzKLlJepcmOL99qToHE/edit?fbclid=IwAR3d9Yh1namqMSEgY-nit5cXQMBQtPs4BeRReEcJ4I_8vzuBMQyB2TqTWuM#gid=14574235)
+
+
+
