@@ -13,6 +13,13 @@ public class Status {
     @Column(name = "`desc`")
     private String desc;
 
+    public Status(Integer id, String desc){
+        this.id = id;
+        this.desc = desc;
+    }
+
+    public Status(){}
+
     public String getDesc() {
         return desc;
     }
